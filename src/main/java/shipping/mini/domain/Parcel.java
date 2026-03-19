@@ -14,6 +14,9 @@ public class Parcel extends BaseEntity {
 
 	@Column(name = "tracking_code", nullable = true)
 	private String trackingCode;
+	
+	@Column(nullable = false)
+	private String carrier;
 
 	@ManyToOne
 	private Shipment shipment;
@@ -22,12 +25,6 @@ public class Parcel extends BaseEntity {
 		super();
 	}
 	
-	public Parcel(Long id, String trackingCode, String carrier, Shipment shipment) {
-		super(id);
-		this.trackingCode = trackingCode;
-		this.shipment = shipment;
-	}
-
 	public String getTrackingCode() {
 		return trackingCode;
 	}
@@ -43,6 +40,14 @@ public class Parcel extends BaseEntity {
 	public void setShipment(Shipment shipment) {
 		this.shipment = shipment;
 	}
+	
+	public String getCarrier() {
+		return carrier;
+	}
+
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}	
 
 	public void assignTracking(String trackingCode) throws ResourceStateConflictException {
 		if (this.trackingCode != null) {

@@ -1,7 +1,7 @@
 package shipping.mini.controller;
 
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +21,7 @@ public class ParcelController {
 		this.parcelService = parcelService;
 	}
 	
-	@PostMapping("/{id}/tracking")
+	@PatchMapping("/{id}/tracking")
 	public ParcelDTO parcelassignTracking(@PathVariable Long id, @RequestBody AssignTrackingRequest req) throws EntityNotfoundException, ResourceStateConflictException {
 		return parcelService.assignTracking(id, req);
 	}

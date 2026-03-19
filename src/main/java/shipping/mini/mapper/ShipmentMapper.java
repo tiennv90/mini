@@ -1,4 +1,4 @@
-package shipping.mini.controller.mapper;
+package shipping.mini.mapper;
 
 import java.util.List;
 
@@ -10,14 +10,14 @@ public class ShipmentMapper {
 	public static ShipmentDTO mapToShipmentDTO(Shipment shipment) {
 		if (shipment == null) return null;
 		return new ShipmentDTO(shipment.getId(), shipment.getShipmentStatus()
-				, shipment.getCarrier(), shipment.getShippedAt()
+				 ,shipment.getShippedAt()
 				, shipment.getParcels().stream().map(ParcelMapper::mapToParcelDTO).toList());
 	}
 	
 	public static ShipmentDTO mapToShipmentDTO(Shipment shipment, List<Parcel> parcels) {
 		if (shipment == null) return null;
 		return new ShipmentDTO(shipment.getId(), shipment.getShipmentStatus()
-				, shipment.getCarrier(), shipment.getShippedAt()
+				, shipment.getShippedAt()
 				, parcels.stream().map(ParcelMapper::mapToParcelDTO).toList());
 	}	
 }

@@ -1,4 +1,4 @@
-package shipping.mini.controller.mapper;
+package shipping.mini.mapper;
 
 import shipping.mini.domain.ItemLine;
 import shipping.mini.dto.ItemLineDTO;

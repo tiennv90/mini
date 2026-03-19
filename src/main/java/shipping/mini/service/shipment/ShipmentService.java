@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import shipping.mini.domain.Shipment;
 import shipping.mini.dto.ShipmentDTO;
 import shipping.mini.dto.ShipmentSearchCriteria;
+import shipping.mini.dto.request.ChangeShipmentRequest;
 import shipping.mini.exception.EntityNotfoundException;
 import shipping.mini.exception.ResourceStateConflictException;
 
@@ -15,8 +16,7 @@ public interface ShipmentService {
 	
 	public Page<ShipmentDTO> getShipments(ShipmentSearchCriteria searchCriteria, Pageable pageable);
 
-	public ShipmentDTO pack(Long id) throws EntityNotfoundException, ResourceStateConflictException;
+	public ShipmentDTO updateStatus(Long id, ChangeShipmentRequest req) throws EntityNotfoundException, ResourceStateConflictException;
 
-	public ShipmentDTO ship(Long id) throws EntityNotfoundException, ResourceStateConflictException;
 	
 }

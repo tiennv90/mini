@@ -45,24 +45,24 @@ VALUES
 ---
 
 INSERT INTO shipments
-(id, order_id, shipment_status, carrier, shipped_at, created_at, updated_at)
+(id, order_id, shipment_status, shipped_at, created_at, updated_at)
 VALUES
-(1, 1, 'CREATED','DHL', NOW(), NOW(), NOW()),
-(2, 2, 'CREATED','UPS', NOW() + INTERVAL '1 hour', NOW(), NOW()),
-(3, 3, 'CREATED','FedEx',NOW() + INTERVAL '2 hour', NOW(), NOW()),
-(4, 4, 'CREATED','DHL',NOW() + INTERVAL '3 hour', NOW(), NOW()),
-(5, 5, 'CREATED','UPS', NOW() + INTERVAL '4 hour', NOW(), NOW());
+(1, 1, 'CREATED', NOW(), NOW(), NOW()),
+(2, 2, 'CREATED', NOW() + INTERVAL '1 hour', NOW(), NOW()),
+(3, 3, 'CREATED',NOW() + INTERVAL '2 hour', NOW(), NOW()),
+(4, 4, 'CREATED',NOW() + INTERVAL '3 hour', NOW(), NOW()),
+(5, 5, 'CREATED', NOW() + INTERVAL '4 hour', NOW(), NOW());
 
 ---
 
 INSERT INTO parcels
-(id, tracking_code, shipment_id, created_at, updated_at)
+(id, tracking_code,carrier ,shipment_id, created_at, updated_at)
 VALUES
-(1, 'TRACK-100001', 1, NOW(), NOW()),
-(2, 'TRACK-100004', 2, NOW(), NOW()),
-(3, 'TRACK-100006', 3, NOW(), NOW()),
-(4, 'TRACK-100008', 4, NOW(), NOW()),
-(5, 'TRACK-100010',5, NOW(), NOW());
+(1, 'TRACK-100001','DHL', 1, NOW(), NOW()),
+(2, 'TRACK-100004','UPS' ,2, NOW(), NOW()),
+(3, 'TRACK-100006','FedEx', 3, NOW(), NOW()),
+(4, 'TRACK-100008','DHL', 4, NOW(), NOW()),
+(5, 'TRACK-100010','UPS', 5, NOW(), NOW());
 
 SELECT setval('orders_id_seq', COALESCE((SELECT MAX(id) FROM orders), 1));
 SELECT setval('address_id_seq', COALESCE((SELECT MAX(id) FROM address), 1));

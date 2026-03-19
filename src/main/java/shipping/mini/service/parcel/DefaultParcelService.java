@@ -2,12 +2,12 @@ package shipping.mini.service.parcel;
 
 import org.springframework.stereotype.Service;
 
-import shipping.mini.controller.mapper.ParcelMapper;
 import shipping.mini.domain.Parcel;
 import shipping.mini.dto.ParcelDTO;
 import shipping.mini.dto.request.AssignTrackingRequest;
 import shipping.mini.exception.EntityNotfoundException;
 import shipping.mini.exception.ResourceStateConflictException;
+import shipping.mini.mapper.ParcelMapper;
 import shipping.mini.repsitory.ParcelRepository;
 
 @Service

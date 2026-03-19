@@ -8,7 +8,6 @@ import shipping.mini.domain.ShipmentStatus;
 public record ShipmentDTO(
 		Long id, 
 		ShipmentStatus status,
-		String carrier, 
 		ZonedDateTime shippedAt, 
 		List<ParcelDTO> parcels) {
 }

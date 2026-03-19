@@ -1,4 +1,4 @@
-package shipping.mini.controller.mapper;
+package shipping.mini.mapper;
 
 import shipping.mini.domain.Address;
 import shipping.mini.domain.ItemLine;
@@ -7,7 +7,7 @@ import shipping.mini.domain.Parcel;
 import shipping.mini.dto.OrderDetailDTO;
 import shipping.mini.dto.request.CreateOrderRequest;
 
-import static shipping.mini.controller.mapper.AddressMapper.*;
+import static shipping.mini.mapper.AddressMapper.*;
 
 import java.util.List;
 

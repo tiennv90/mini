@@ -96,11 +96,11 @@ public class Order extends BaseEntity {
 		}
 		Shipment shipment = new Shipment();
 		shipment.setShipmentStatus(ShipmentStatus.CREATED);
-		shipment.setCarrier(createShipmentRequest.carrier());
 		shipment.setOrder(this);
 
 		// for this MVP only 1 Parcel
 		Parcel parcel = new Parcel();
+		parcel.setCarrier(createShipmentRequest.carrier());
 		parcel.setShipment(shipment);
 		shipment.setParcels(List.of(parcel));
 
