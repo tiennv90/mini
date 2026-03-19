@@ -30,7 +30,7 @@ export default function SearchShipments() {
         <div>
           <h3>Page {result.page.number+1} / {result.page.totalPages}</h3>
           <ul>
-            {result.content.map(sh=> <li key={sh.id}>ID: {sh.id}, Status: {sh.status}, Carrier: {sh.carrier}</li>)}
+            {result.content.map(sh=> <li key={sh.id}>ID: {sh.id}, Status: {sh.status}, Carrier: {sh.parcels.map(p => <span>{p.carrier}</span>)}</li>)}
           </ul>
           <button disabled={page<=0} onClick={()=>setPage(page-1)}>Prev</button>
           <button disabled={page>=result.page.totalPages-1} onClick={()=>setPage(page+1)}>Next</button>
