@@ -10,12 +10,19 @@ Requrirement: install maven and java 21
 `mvn clean install`
 
 `mvn spring-boot:run`
+
+http://localhost:8080/
+
 ## Start Frontend App
+
 `cd /mini/frontend`
 
 `npm install`
 
 `npm start`
+
+http://localhost:3000
+
 ## API Overview via Swagger: 
 
 http://localhost:8080/swagger-ui/index.html#/
