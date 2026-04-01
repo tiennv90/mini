@@ -1,0 +1,17 @@
+{
+ "request": {
+  "method": "GET",
+  "url": "/shipping"
+ },
+ "response": {
+  "status": 200,
+  "jsonBody": {
+   "status": "BOOKED",
+   "trackingId": "TRACK123456"
+  },
+  "headers": {
+   "Content-Type": "application/json"
+  },
+  "fixedDelayMilliseconds": 500
+ }
+}

@@ -1,0 +1,16 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+       <groupId>shipping</groupId>
+       <artifactId>mini</artifactId>
+       <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>shared-kernal</artifactId>
+    <packaging>pom</packaging>
+    
+    <dependencies>
+
+    </dependencies>
+</project>

@@ -1,0 +1,25 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <groupId>shipment</groupId>
+    <artifactId>shipment-module</artifactId>
+       <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>shipment-application</artifactId>
+    <packaging>pom</packaging>
+    
+    <dependencies>
+        <dependency>
+            <groupId>shipment</groupId>
+            <artifactId>shipment-domain</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>shipment</groupId>
+            <artifactId>shipment-infrastrcture</artifactId>
+            <version>1.0</version>
+        </dependency>           
+    </dependencies>
+</project>

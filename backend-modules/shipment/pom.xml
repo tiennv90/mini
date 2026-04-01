@@ -1,0 +1,23 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+       <groupId>shipping</groupId>
+       <artifactId>mini</artifactId>
+       <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <groupId>shipment</groupId>
+    <artifactId>shipment-module</artifactId>
+    <packaging>pom</packaging>
+    
+    <modules>
+      <module>application</module>
+      <module>domain</module>
+      <module>infrastructure</module>
+    </modules>
+    
+    <dependencies>
+
+    </dependencies>
+</project>
