@@ -1,0 +1,21 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+       <groupId>shipping</groupId>
+       <artifactId>mini</artifactId>
+       <version>1.0</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <groupId>boostrap</groupId>
+    <artifactId>shipment-bootstrap</artifactId>
+    <packaging>jar</packaging>
+    
+    <dependencies>
+      <dependency>
+       <groupId>shipment</groupId>
+       <artifactId>shipment-application</artifactId>
+       <version>1.0</version>   
+      </dependency>
+    </dependencies>
+</project>

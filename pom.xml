@@ -19,6 +19,9 @@
 	  <module>backend-modules/order</module>
 	  <module>backend-modules/shipment</module>
 	  <module>backend-modules/parcel</module>
+	  <module>backend-boostrap/order-bootstrap</module>
+	  <module>backend-boostrap/parcel-bootstrap</module>
+	  <module>backend-boostrap/shipment-bootstrap</module>
 	</modules>
 	<url/>
 	<licenses>
@@ -45,7 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -65,7 +67,12 @@
    <groupId>org.springdoc</groupId>
      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
      <version>3.0.2</version>
-  </dependency>		
+  </dependency>	
+  <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <version>5.0.0</version>
+  </dependency>   	
 	</dependencies>
 
 <!--

@@ -1,10 +1,10 @@
-package com.mini.order.repository;
+package shipping.mini.order.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.mini.order.domain.Order;
+import shipping.mini.order.domain.Order;
 
 
 public interface OrderRepository extends CrudRepository<Order, Long> {

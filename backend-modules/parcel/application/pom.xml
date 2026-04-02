@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>parcel-application</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
@@ -20,6 +20,6 @@
             <groupId>parcel</groupId>
             <artifactId>parcel-infrastrcture</artifactId>
             <version>1.0</version>
-        </dependency>           
+        </dependency>
     </dependencies>
 </project>
