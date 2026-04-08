@@ -8,17 +8,12 @@
     </parent>
 
     <artifactId>order-application</artifactId>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>order</groupId>
             <artifactId>order-domain</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>order</groupId>
-            <artifactId>order-infrastrcture</artifactId>
-            <version>1.0</version>
-        </dependency>           
     </dependencies>
 </project>

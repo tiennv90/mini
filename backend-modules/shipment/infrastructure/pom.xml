@@ -10,6 +10,15 @@
     <artifactId>shipment-infrastrcture</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-
+        <dependency>
+            <groupId>shipping</groupId>
+            <artifactId>shared-kernal</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>shipment</groupId>
+            <artifactId>shipment-application</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

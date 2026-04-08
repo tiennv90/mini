@@ -6,23 +6,23 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.mini.parcel.domain.Parcel;
-import com.mini.parcel.repository.ParcelRepository;
+import com.mini.parcel.domain.ParcelDomain;
+import com.mini.parcel.repository.ParcelDomainRepository;
 
 import shipping.mini.kernal.dataloader.DataLoader;
 
 @Component
-public class ParcelDataLoader implements DataLoader<Long, Parcel>{
+public class ParcelDataLoader implements DataLoader<Long, ParcelDomain>{
 
-	private final ParcelRepository parcelRepository;
+	private final ParcelDomainRepository parcelDomainRepository;
 	
-	public ParcelDataLoader(ParcelRepository parcelRepository) {
-		this.parcelRepository = parcelRepository;
+	public ParcelDataLoader(ParcelDomainRepository parcelDomainRepository) {
+		this.parcelDomainRepository = parcelDomainRepository;
 	}
 	
 	@Override
-	public Map<Long, List<Parcel>> load(List<Long> keyIds) {
-		List<Parcel> parcels = parcelRepository.findByShipmentIdIn(keyIds);
+	public Map<Long, List<ParcelDomain>> load(List<Long> keyIds) {
+		List<ParcelDomain> parcels = parcelDomainRepository.findByShipmentIdIn(keyIds);
 		return parcels.stream().collect(Collectors.groupingBy(p -> p.getShipmentId()));
 	}
 

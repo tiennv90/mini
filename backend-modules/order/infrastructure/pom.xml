@@ -10,6 +10,15 @@
     <artifactId>order-infrastrcture</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-
+        <dependency>
+            <groupId>shipping</groupId>
+            <artifactId>shared-kernal</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>order</groupId>
+            <artifactId>order-application</artifactId>
+            <version>1.0</version>
+        </dependency>       
     </dependencies>
 </project>

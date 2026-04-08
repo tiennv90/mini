@@ -48,14 +48,4 @@ public class Parcel extends BaseEntity {
 		this.shipmentId = shipmentId;
 	}
 
-	public void assignTracking(String trackingCode) throws ResourceStateConflictException {
-		if (this.trackingCode != null) {
-			throw new ResourceStateConflictException("Tracking code already assigned");
-		}
-		this.trackingCode = trackingCode;
-	}
-
-	public boolean hasTracking() {
-		return trackingCode != null;
-	}
 }

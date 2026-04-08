@@ -16,10 +16,5 @@
             <artifactId>shipment-domain</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>shipment</groupId>
-            <artifactId>shipment-infrastrcture</artifactId>
-            <version>1.0</version>
-        </dependency>           
     </dependencies>
 </project>

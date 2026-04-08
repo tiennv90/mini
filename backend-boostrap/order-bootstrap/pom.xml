@@ -12,11 +12,11 @@
     <packaging>jar</packaging>
     
     <dependencies>
-      <dependency>
-       <groupId>order</groupId>
-       <artifactId>order-application</artifactId>
-       <version>1.0</version>   
-      </dependency>
+        <dependency>
+            <groupId>order</groupId>
+            <artifactId>order-infrastrcture</artifactId>
+            <version>1.0</version>
+        </dependency> 
     </dependencies>
     
   <build>
@@ -24,7 +24,7 @@
     <plugin>
      <groupId>org.springframework.boot</groupId>
      <artifactId>spring-boot-maven-plugin</artifactId>
-    </plugin>
+    </plugin>   
    </plugins>
  </build>    
 </project>

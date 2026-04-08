@@ -2,7 +2,7 @@ spring:
   application:
     name: mini
   datasource:
-    url: jdbc:postgresql://localhost:5433/order
+    url: jdbc:postgresql://localhost:5434/order
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver

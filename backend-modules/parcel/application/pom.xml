@@ -16,10 +16,5 @@
             <artifactId>parcel-domain</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>parcel</groupId>
-            <artifactId>parcel-infrastrcture</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
 </project>
