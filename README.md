@@ -27,8 +27,14 @@ http://localhost:3000
 
 http://localhost:8080/swagger-ui/index.html#/
 
+## CLI commands
+### Access Redis server local
+
+`redis-cli -u redis://127.0.0.1:6379`
+
 ## New features
 ### Microservices use cases
+#### Redesign create order flow: order -> kafka -> create shipment
 #### Implement Event bus to support microservice and kafka
 #### Split the source code to micro services
 ### Concurrency use cases

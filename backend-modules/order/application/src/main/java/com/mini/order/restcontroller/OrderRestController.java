@@ -11,6 +11,7 @@ import com.mini.order.dto.OrderDetailDTO;
 import com.mini.order.dto.request.CreateOrderRequest;
 import com.mini.order.service.OrderService;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import shipping.mini.kernal.exception.EntityNotfoundException;
 import shipping.mini.kernal.exception.ResourceStateConflictException;
 
@@ -36,7 +37,10 @@ public class OrderRestController {
 //	}
 
 	@GetMapping("/{orderId}")
+	@RateLimiter(name = "backendA")
 	public OrderDetailDTO getOrderDetails(@PathVariable Long orderId) throws EntityNotfoundException {
 		return orderService.getOrderDetails(orderId);
 	}
+	
+	
 }

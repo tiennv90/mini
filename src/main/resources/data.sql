@@ -15,7 +15,6 @@ VALUES
 (3, 'ORD-2024-0003', 3, 'CREATED', NOW(), NOW()),
 (4, 'ORD-2024-0004', 4, 'CREATED', NOW(), NOW()),
 (5, 'ORD-2024-0005', 5, 'CREATED', NOW(), NOW());
-
 ---
 
 INSERT INTO item_line 
