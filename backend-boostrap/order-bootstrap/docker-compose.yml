@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  postgres:
+   image: postgres:18.3
+   container_name: postgres-order
+   restart: always
+   environment:
+    POSTGRES_USER: admin
+    POSTGRES_PASSWORD: admin
+    POSTGRES_DB: order
+   ports:
+    - "5434:5432"  
+   volumes:
+    - postgres_data_1:/var/lib/postgresql
+  
+  adminer:
+    image: adminer:5.4.2
+    container_name: adminer-order
+    restart: always
+    ports:
+     - "8082:8080"
+     
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --bind 0.0.0.0 --protected-mode no --save 20 1 --loglevel warning
+  
+volumes:
+  postgres_data_1:

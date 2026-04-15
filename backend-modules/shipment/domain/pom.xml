@@ -1,0 +1,19 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+       <groupId>shipment</groupId>
+       <artifactId>shipment-module</artifactId>
+       <version>1.0</version>
+       <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>shipment-domain</artifactId>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>shipping</groupId>
+            <artifactId>shared-kernal</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+</project>

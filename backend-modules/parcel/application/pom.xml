@@ -1,0 +1,20 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <groupId>parcel</groupId>
+    <artifactId>parcel-module</artifactId>
+       <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>parcel-application</artifactId>
+    <packaging>jar</packaging>
+    
+    <dependencies>
+        <dependency>
+            <groupId>parcel</groupId>
+            <artifactId>parcel-domain</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+</project>

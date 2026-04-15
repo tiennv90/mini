@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: mini
+  datasource:
+    url: jdbc:postgresql://localhost:5434/order
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  
+  data:
+   redis:
+    host: localhost
+    port: 6379
+
+  sql:
+   init:
+    mode: always
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        
+resilience4j:
+ ratelimiter:
+    instances:
+        backendA:
+            limitForPeriod: 2 #max 2 requests per second
+            limitRefreshPeriod: 10s #after each X seconds system renew the threadhold 
+            timeoutDuration: 0
+            registerHealthIndicator: true
+            eventConsumerBufferSize: 100
+        backendB:
+            limitForPeriod: 6
+            limitRefreshPeriod: 500ms
+            timeoutDuration: 3s
+ circuitbreaker:
+   configs:
+       default:
+           slidingWindowSize: 10
+           permittedNumberOfCallsInHalfOpenState: 3
+           waitDurationInOpenState: 5s
+           failureRateThreshold: 60
+           eventConsumerBufferSize: 10
+           registerHealthIndicator: true
+

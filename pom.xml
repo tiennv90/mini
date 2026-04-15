@@ -3,16 +3,26 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.3</version>
-		<relativePath/> <!-- lookup parent from repository -->
+ 		<groupId>org.springframework.boot</groupId>
+ 		<artifactId>spring-boot-starter-parent</artifactId>
+ 		<version>4.0.3</version>
+ 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>shipping</groupId>
 	<artifactId>mini</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>mini</name>
+	<packaging>pom</packaging>
 	<description>Shipping Mini API</description>
+	<modules>
+	  <module>backend-modules/shared-kernel</module>
+	  <module>backend-modules/order</module>
+	  <module>backend-modules/shipment</module>
+	  <module>backend-modules/parcel</module>
+	  <module>backend-boostrap/order-bootstrap</module>
+	  <module>backend-boostrap/parcel-bootstrap</module>
+	  <module>backend-boostrap/shipment-bootstrap</module>
+	</modules>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,18 +37,25 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>25</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-aspectj</artifactId>
+  </dependency>		
+  <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>    
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -58,16 +75,21 @@
    <groupId>org.springdoc</groupId>
      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
      <version>3.0.2</version>
-  </dependency>		
+  </dependency>	
+  <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <version>5.0.0</version>
+  </dependency> 
+  <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>1.6.3</version>
+  </dependency>
+  <dependency>
+      <groupId>io.github.resilience4j</groupId>
+      <artifactId>resilience4j-spring-boot4</artifactId>
+      <version>2.4.0</version>
+  </dependency>  
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>

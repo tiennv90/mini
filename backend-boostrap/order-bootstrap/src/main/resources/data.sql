@@ -15,6 +15,7 @@ VALUES
 (3, 'ORD-2024-0003', 3, 'CREATED', NOW(), NOW()),
 (4, 'ORD-2024-0004', 4, 'CREATED', NOW(), NOW()),
 (5, 'ORD-2024-0005', 5, 'CREATED', NOW(), NOW());
+
 ---
 
 INSERT INTO item_line 
@@ -41,30 +42,6 @@ VALUES
 (19, 'Smartphone Stand', 2, 4, NOW(), NOW()),
 (20, 'Bluetooth Tracker Tile', 3, 5, NOW(), NOW());
 
----
-
-INSERT INTO shipments
-(id, order_id, shipment_status, shipped_at, created_at, updated_at)
-VALUES
-(1, 1, 'CREATED', NOW(), NOW(), NOW()),
-(2, 2, 'CREATED', NOW() + INTERVAL '1 hour', NOW(), NOW()),
-(3, 3, 'CREATED',NOW() + INTERVAL '2 hour', NOW(), NOW()),
-(4, 4, 'CREATED',NOW() + INTERVAL '3 hour', NOW(), NOW()),
-(5, 5, 'CREATED', NOW() + INTERVAL '4 hour', NOW(), NOW());
-
----
-
-INSERT INTO parcels
-(id, tracking_code,carrier ,shipment_id, created_at, updated_at)
-VALUES
-(1, 'TRACK-100001','DHL', 1, NOW(), NOW()),
-(2, 'TRACK-100004','UPS' ,2, NOW(), NOW()),
-(3, 'TRACK-100006','FedEx', 3, NOW(), NOW()),
-(4, 'TRACK-100008','DHL', 4, NOW(), NOW()),
-(5, 'TRACK-100010','UPS', 5, NOW(), NOW());
-
 SELECT setval('orders_id_seq', COALESCE((SELECT MAX(id) FROM orders), 1));
 SELECT setval('address_id_seq', COALESCE((SELECT MAX(id) FROM address), 1));
-SELECT setval('parcels_id_seq', COALESCE((SELECT MAX(id) FROM parcels), 1));
-SELECT setval('shipments_id_seq', COALESCE((SELECT MAX(id) FROM shipments), 1));
 SELECT setval('item_line_id_seq', COALESCE((SELECT MAX(id) FROM item_line), 1));

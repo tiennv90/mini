@@ -1,0 +1,19 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+    <groupId>order</groupId>
+    <artifactId>order-module</artifactId>
+       <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>order-application</artifactId>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>order</groupId>
+            <artifactId>order-domain</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+</project>
