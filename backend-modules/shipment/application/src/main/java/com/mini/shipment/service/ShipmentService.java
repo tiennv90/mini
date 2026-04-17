@@ -17,4 +17,6 @@ public interface ShipmentService {
 	public Page<ShipmentDTO> getShipments(ShipmentSearchCriteria searchCriteria, Pageable pageable);
 
 	public ShipmentDTO updateStatus(Long id, ChangeShipmentRequest req) throws EntityNotfoundException, ResourceStateConflictException;
+
+	public ShipmentDTO getShipmentByOrder(Long orderId) throws EntityNotfoundException;
 }

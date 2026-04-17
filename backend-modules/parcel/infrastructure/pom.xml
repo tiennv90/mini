@@ -7,7 +7,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>parcel-infrastrcture</artifactId>
+    <artifactId>parcel-infrastructure</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>

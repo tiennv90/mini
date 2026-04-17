@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  postgres:
+   image: postgres:18.3
+   container_name: postgres-shipment
+   restart: always
+   environment:
+    POSTGRES_USER: admin
+    POSTGRES_PASSWORD: admin
+    POSTGRES_DB: shipment
+   ports:
+    - "5436:5432"  
+   volumes:
+    - postgres_data_shipment:/var/lib/postgresql
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "6381:6379"
+    command: redis-server --bind 0.0.0.0 --protected-mode no --save 20 1 --loglevel warning
+  
+volumes:
+  postgres_data_shipment:

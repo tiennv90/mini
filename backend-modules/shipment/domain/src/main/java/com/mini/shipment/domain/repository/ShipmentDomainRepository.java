@@ -8,5 +8,6 @@ public interface ShipmentDomainRepository {
 
 	Optional<ShipmentDomain> findShipmentDetailsById(Long id);
 	Optional<ShipmentDomain> findById(Long id);
+	Optional<ShipmentDomain> findByOrderId(Long orderId);
 	ShipmentDomain save(ShipmentDomain shipmentDomain);
 }

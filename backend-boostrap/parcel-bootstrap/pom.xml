@@ -14,7 +14,7 @@
     <dependencies>
       <dependency>
        <groupId>parcel</groupId>
-       <artifactId>parcel-application</artifactId>
+       <artifactId>parcel-infrastructure</artifactId>
        <version>1.0</version>   
       </dependency>
     </dependencies>

@@ -6,9 +6,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.mini.order.dto.ShipmentDTO;
 
-@FeignClient(name = "shipment-rest-client", url = "http://localhost:8082/v1")
+@FeignClient(name = "shipment-rest-client", url = "http://localhost:9080/v1/shipments")
 public interface ShipmentRestClient {
 
-	@GetMapping("/shipment/{shipmentId}")
+	@GetMapping("/{shipmentId}")
 	public ShipmentDTO getShipment(@PathVariable Long shipmentId);
+	
+	@GetMapping("/order/{orderId}")
+	public ShipmentDTO getShipmentByOrder(@PathVariable Long orderId);
 }

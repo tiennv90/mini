@@ -20,5 +20,9 @@ public class ParcelGatewayImpl implements ParcelGateway {
 	public List<ParcelDTO> getParcelsByShipmentIds(List<Long> shipmentIds) {
 		return parcelRestClient.getParcelsByShipmentIds(shipmentIds);
 	}
+	@Override
+	public List<ParcelDTO> getParcelsByShipmentId(Long shipmentId) {
+		return parcelRestClient.getParcelsByShipmentId(shipmentId);
+	}
 
 }

@@ -14,8 +14,8 @@
     <dependencies>
       <dependency>
        <groupId>shipment</groupId>
-       <artifactId>shipment-application</artifactId>
-       <version>1.0</version>   
+       <artifactId>shipment-infrastructure</artifactId>
+       <version>1.0</version>
       </dependency>
     </dependencies>
 </project>

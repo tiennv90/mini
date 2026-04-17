@@ -23,11 +23,11 @@ import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @RestController
 @RequestMapping("/v1/shipments")
-public class ShipmentController {
+public class ShipmentRestController {
 
 	private final ShipmentService shipmentService;
 
-	public ShipmentController(ShipmentService shipmentService) {
+	public ShipmentRestController(ShipmentService shipmentService) {
 		this.shipmentService = shipmentService;
 	}
 	
@@ -35,6 +35,11 @@ public class ShipmentController {
 	public ShipmentDTO getShipmentDetails(@PathVariable Long id) throws EntityNotfoundException {
 		return shipmentService.getShipMenDetails(id);
 	}
+	
+	@GetMapping("/order/{orderId}")
+	public ShipmentDTO getShipmentByOrder(@PathVariable Long orderId) throws EntityNotfoundException {
+		return shipmentService.getShipmentByOrder(orderId);
+	}	
 	
 	@PatchMapping("/{id}")
 	public ShipmentDTO updateStatus(@PathVariable Long id,@RequestBody ChangeShipmentRequest req) 
