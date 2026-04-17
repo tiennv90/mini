@@ -2,10 +2,13 @@ package com.mini.shipment.infrastructure.gateway.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.mini.shipment.dto.ParcelDTO;
 import com.mini.shipment.gateway.ParcelGateway;
 import com.mini.shipment.infrastructure.restclient.ParcelRestClient;
 
+@Component
 public class ParcelGatewayImpl implements ParcelGateway{
 
 	private final ParcelRestClient parcelRestClient;

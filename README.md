@@ -31,18 +31,3 @@ http://localhost:8080/swagger-ui/index.html#/
 ### Access Redis server local
 
 `redis-cli -u redis://127.0.0.1:6379`
-
-## New features
-### Microservices use cases
-#### Redesign create order flow: order -> kafka -> create shipment
-#### Implement Event bus to support microservice and kafka
-#### Split the source code to micro services
-### Concurrency use cases
-#### Kafka message handling with queue to process the queue orderly
-#### CPU intensive consuming task, compress order and parcel documents and aggregate results. (Fork and Join)
-#### Fire and forget to send log to message broker
-#### Concurrency options: Executors, Virtual Thread, Future, CompletableFuture Aggregate), @Async, ComposeAsync, CombineAsync
-#### Apply reactive to implement user click service
-#### Import orders from big CSV files
-#### Resource 1: https://www.youtube.com/watch?v=vhHDlSV_0zg
-#### Resource 2:https://www.youtube.com/watch?v=lnSn2rxSlKo

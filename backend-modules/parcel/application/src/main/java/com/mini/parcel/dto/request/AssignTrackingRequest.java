@@ -1,4 +1,4 @@
-package shipping.mini.parcel.dto.request;
+package com.mini.parcel.dto.request;
 
 public record AssignTrackingRequest(String trackingCode) {
 

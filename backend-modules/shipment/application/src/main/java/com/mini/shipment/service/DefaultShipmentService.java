@@ -74,4 +74,11 @@ public class DefaultShipmentService implements ShipmentService {
 				.orElseThrow(() -> new EntityNotfoundException("Shipment not found for Id: " + id));
 	}
 
+	@Override
+	public ShipmentDTO getShipmentByOrder(Long orderId) throws EntityNotfoundException {
+		ShipmentDomain shipment = shipmentRepository.findByOrderId(orderId)
+				.orElseThrow(() -> new EntityNotfoundException("No Shipment not found for Order id " + orderId));
+		return mapper.toDTO(shipment);
+	}
+
 }

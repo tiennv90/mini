@@ -1,15 +1,14 @@
-package com.mini.parcel.domain;
+package com.mini.parcel.infrastructure.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import shipping.mini.kernal.dto.entity.BaseEntity;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @Entity
 @Table(name = "parcels", uniqueConstraints = @UniqueConstraint(name = "uc_tracking_code", columnNames = "tracking_code"))
-public class Parcel extends BaseEntity {
+public class ParcelEntity extends BaseEntity {
 
 	@Column(name = "tracking_code", nullable = true)
 	private String trackingCode;
@@ -20,7 +19,7 @@ public class Parcel extends BaseEntity {
 	@Column(nullable = false)
 	private Long shipmentId;
 
-	public Parcel() {
+	public ParcelEntity() {
 		super();
 	}
 	

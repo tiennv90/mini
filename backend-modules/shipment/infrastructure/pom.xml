@@ -7,7 +7,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>shipment-infrastrcture</artifactId>
+    <artifactId>shipment-infrastructure</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>

@@ -6,7 +6,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.mini.order.component.ItemLineDataLoader;
-import com.mini.order.component.ParcelDataLoader;
 import com.mini.order.domain.AddressDomain;
 import com.mini.order.domain.ItemLineDomain;
 import com.mini.order.domain.OrderDomain;
@@ -14,6 +13,7 @@ import com.mini.order.dto.OrderDetailDTO;
 import com.mini.order.dto.ParcelDTO;
 import com.mini.order.dto.ShipmentDTO;
 import com.mini.order.dto.request.CreateOrderRequest;
+import com.mini.order.gateway.ParcelGateway;
 import com.mini.order.gateway.ShipmentGateway;
 import com.mini.order.mapper.AddressDomainMapper;
 import com.mini.order.mapper.ItemLineDomainMapper;
@@ -27,25 +27,25 @@ import shipping.mini.kernal.exception.ResourceStateConflictException;
 public class DefaultOrderService implements OrderService {
 
 	private final OrderDomainRepository orderRepository;
-	private final ParcelDataLoader parcelDataLoader;
+	private final ParcelGateway parcelGateway;
 	private final ItemLineDataLoader itemLineLoader;
 	private final ShipmentGateway shipmentGateway;
 	private final OrderDomainMapper orderDomainMapper;
 	private final ItemLineDomainMapper itemLineDomainMapper;
 	private final AddressDomainMapper addressMapper;
 
-	public DefaultOrderService(OrderDomainRepository orderRepository, ParcelDataLoader parcelDataLoader,
+	public DefaultOrderService(OrderDomainRepository orderRepository, ParcelGateway parcelGateway,
 			ItemLineDataLoader itemLineLoader,
 			ShipmentGateway shipmentGateway,
 			OrderDomainMapper orderDomainMapper,
 			ItemLineDomainMapper itemLineDomainMapper,
 			AddressDomainMapper addressMapper) {
 		this.orderRepository = orderRepository;
-		this.parcelDataLoader = parcelDataLoader;
 		this.itemLineLoader = itemLineLoader;
 		this.shipmentGateway = shipmentGateway;
 		this.orderDomainMapper = orderDomainMapper;
 		this.itemLineDomainMapper = itemLineDomainMapper;
+		this.parcelGateway = parcelGateway;
 		this.addressMapper = addressMapper;
 	}
 
@@ -55,13 +55,10 @@ public class DefaultOrderService implements OrderService {
 		OrderDomain order = getOrder(id);
 		List<ItemLineDomain> itemLines = itemLineLoader.loadAsList(List.of(id));
 
-		Long shipmentId = order.getShipmentId();
-		
 		List<ParcelDTO> parcels = null;
-		ShipmentDTO shipment = null;
-		if  (shipmentId != null) {
-			parcels = parcelDataLoader.loadAsList(List.of(shipmentId));
-			shipment = shipmentGateway.getShipment(shipmentId);
+		ShipmentDTO shipment =  shipmentGateway.getShipmentByOrderId(order.getId());
+		if  (shipment != null) {
+			parcels = parcelGateway.getParcelsByShipmentId(shipment.id());
 		}
 		
 		return orderDomainMapper.mapToOrderDetailDTO(order, itemLines,shipment, parcels);

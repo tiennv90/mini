@@ -1,8 +1,10 @@
+server:
+  port: 9080
 spring:
   application:
-    name: mini
+    name: shipment
   datasource:
-    url: jdbc:postgresql://localhost:5435/shipment
+    url: jdbc:postgresql://localhost:5436/shipment
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver

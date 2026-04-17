@@ -20,4 +20,9 @@ public class ShipmentGatewayImpl implements ShipmentGateway {
 		return shipmentRestClient.getShipment(shipmentId);
 	}
 
+	@Override
+	public ShipmentDTO getShipmentByOrderId(Long orderId) {
+		return shipmentRestClient.getShipmentByOrder(orderId);
+	}
+
 }

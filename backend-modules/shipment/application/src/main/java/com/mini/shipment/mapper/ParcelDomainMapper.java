@@ -1,13 +1,16 @@
 package com.mini.shipment.mapper;
 
-import org.mapstruct.Mapper;
+import org.springframework.stereotype.Component;
 
 import com.mini.shipment.domain.ParcelDomain;
 import com.mini.shipment.dto.ParcelDTO;
 
-@Mapper(componentModel = "spring")
-public interface ParcelDomainMapper {
+@Component
+public class ParcelDomainMapper {
 	
-	ParcelDomain toDomain(ParcelDTO parcelDT);
+	public ParcelDomain toDomain(ParcelDTO parcelDTO) {
+		ParcelDomain parcelDomain = new ParcelDomain(parcelDTO.trackingCode());
+		return parcelDomain;
+	}
 
 }

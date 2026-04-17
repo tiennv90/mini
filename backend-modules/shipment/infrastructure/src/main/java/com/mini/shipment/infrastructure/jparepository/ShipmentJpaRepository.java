@@ -12,8 +12,10 @@ import com.mini.shipment.infrastructure.entity.ShipmentEntity;
 
 public interface ShipmentJpaRepository extends JpaRepository<ShipmentEntity, Long>, JpaSpecificationExecutor<ShipmentEntity>{
 	@Query("""
-			select s from Shipment s
+			select s from ShipmentEntity s
 			where s.id = :id
 			""")
 	public Optional<ShipmentEntity> findShipmentDetailsById(Long id);
+
+	public Optional<ShipmentEntity> findByOrderId(Long orderId);
 }

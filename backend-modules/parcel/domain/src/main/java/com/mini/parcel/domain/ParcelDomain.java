@@ -4,10 +4,18 @@ import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 public class ParcelDomain {
 	
+	private Long id;
 	private String trackingCode;
 	private String carrier;
 	private Long shipmentId;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getTrackingCode() {
 		return trackingCode;
 	}

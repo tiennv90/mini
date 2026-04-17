@@ -2,20 +2,31 @@ package com.mini.shipment.mapper;
 
 import java.util.List;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
 import com.mini.shipment.domain.ShipmentDomain;
 import com.mini.shipment.dto.ParcelDTO;
 import com.mini.shipment.dto.ShipmentDTO;
 
-@Mapper(componentModel = "spring")
-public interface ShipmentDomainMapper {
+@Component
+public class ShipmentDomainMapper {
 
-	ShipmentDTO toDTO(ShipmentDomain domain);
+	public ShipmentDTO toDTO(ShipmentDomain domain) {
+		return new ShipmentDTO(domain.getId(), 
+				domain.getShipmentStatus(), domain.getShippedAt(), null, domain.getOrderId());
+	}
 	
-	@Mapping(target = "parcels", source = "parcels")
-	ShipmentDTO toDTO(ShipmentDomain domain, List<ParcelDTO> parcels);
+	public ShipmentDTO toDTO(ShipmentDomain domain, List<ParcelDTO> parcels) {
+		return new ShipmentDTO(domain.getId(), 
+				domain.getShipmentStatus(), domain.getShippedAt(), parcels, domain.getOrderId());
+	}
 	
-	ShipmentDomain toDomain(ShipmentDTO dto);
+	public ShipmentDomain toDomain(ShipmentDTO dto) {
+		ShipmentDomain domain = new ShipmentDomain();
+		domain.setId(dto.id());
+		domain.setOrderId(dto.orderId());
+		domain.setShipmentStatus(dto.status());
+		domain.setShippedAt(dto.shippedAt());
+		return domain;
+	}
 }

@@ -38,4 +38,10 @@ public class ShipmentDomainRepositoryIml implements ShipmentDomainRepository {
 		return mapper.toDomain(entity);
 	}
 
+	@Override
+	public Optional<ShipmentDomain> findByOrderId(Long orderId) {
+		Optional<ShipmentEntity> entity = shipmentJpaRepository.findByOrderId(orderId);
+		return entity.map(mapper::toDomain);
+	}
+
 }

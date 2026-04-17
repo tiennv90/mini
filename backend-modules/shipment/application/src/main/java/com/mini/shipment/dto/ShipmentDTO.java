@@ -9,5 +9,6 @@ public record ShipmentDTO(
 		Long id, 
 		ShipmentStatus status,
 		ZonedDateTime shippedAt, 
-		List<ParcelDTO> parcels) {
+		List<ParcelDTO> parcels, 
+		Long orderId) {
 }
