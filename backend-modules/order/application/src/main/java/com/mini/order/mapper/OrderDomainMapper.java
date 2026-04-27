@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
+import com.mini.order.command.ShipmentCreatedCommand;
 import com.mini.order.domain.AddressDomain;
 import com.mini.order.domain.ItemLineDomain;
 import com.mini.order.domain.OrderDomain;
@@ -33,6 +34,10 @@ public class OrderDomainMapper {
 		return domain;
 	}
 
+	public OrderDetailDTO mapToOrderDTO(OrderDomain order, List<ItemLineDomain> itemLines) {
+		return mapToOrderDetailDTO(order, itemLines, null, null);
+	}
+	
 	public OrderDetailDTO mapToOrderDetailDTO(OrderDomain order, List<ItemLineDomain> itemLines, ShipmentDTO shipment,
 			List<ParcelDTO> parcels) {
 		List<ItemLineDTO> itemLineDTOs = null;
@@ -45,4 +50,7 @@ public class OrderDomainMapper {
 				addressMapper.toDTO(order.getDeliveryAddress()), itemLineDTOs, shipment, parcels);
 	}
 
+	public ShipmentCreatedCommand toShipmentCreatedCommand(OrderDomain domain) {
+		return new ShipmentCreatedCommand(domain.getId());
+	}
 }

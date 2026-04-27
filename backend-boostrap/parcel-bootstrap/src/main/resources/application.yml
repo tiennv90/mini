@@ -4,6 +4,8 @@ spring:
   application:
     name: parcel
   datasource:
+    hikari:
+      auto-commit: false   
     url: jdbc:postgresql://localhost:5435/parcel
     username: admin
     password: admin
@@ -13,6 +15,7 @@ spring:
    init:
     mode: always
   jpa:
+    open-in-view: false
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create

@@ -14,6 +14,7 @@ public class AddressDomainMapper {
 		domain.setCountry(dto.city());
 		domain.setHouseNumber(dto.houseNumber());
 		domain.setPostalCode(dto.postalCode());
+		domain.setStreet(dto.street());
 		return domain;
 	}
 	
