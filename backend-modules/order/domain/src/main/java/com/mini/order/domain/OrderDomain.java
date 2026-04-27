@@ -47,4 +47,9 @@ public class OrderDomain {
 	public void setItemlines(List<ItemLineDomain> itemlines) {
 		this.itemlines = itemlines;
 	}
+	
+	public OrderDomain createOrder() {
+		this.orderStatus = OrderStatusDomain.CREATED;
+		return this;
+	}
 }

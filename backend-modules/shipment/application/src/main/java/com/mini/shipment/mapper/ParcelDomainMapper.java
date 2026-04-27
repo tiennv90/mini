@@ -12,5 +12,5 @@ public class ParcelDomainMapper {
 		ParcelDomain parcelDomain = new ParcelDomain(parcelDTO.trackingCode());
 		return parcelDomain;
 	}
-
+	
 }

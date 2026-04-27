@@ -1,0 +1,168 @@
+services:
+
+  ## controllers
+  controller1:
+    image: confluentinc/cp-kafka:8.1.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller1:29093,2@controller2:29094,3@controller3:29095
+      KAFKA_LISTENERS: CONTROLLER://controller1:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+    ports:
+      - 29093:29093
+    networks:
+      - kafka-net
+
+  controller2:
+    image: confluentinc/cp-kafka:8.1.1
+    environment:
+      KAFKA_NODE_ID: 2
+      KAFKA_PROCESS_ROLES: controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller1:29093,2@controller2:29094,3@controller3:29095
+      KAFKA_LISTENERS: CONTROLLER://controller2:29094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+    ports:
+      - 29094:29094
+    networks:
+      - kafka-net
+
+  controller3:
+    image: confluentinc/cp-kafka:8.1.1
+    environment:
+      KAFKA_NODE_ID: 3
+      KAFKA_PROCESS_ROLES: controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller1:29093,2@controller2:29094,3@controller3:29095
+      KAFKA_LISTENERS: CONTROLLER://controller3:29095
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+    ports:
+      - 29095:29095
+    networks:
+      - kafka-net
+
+  ## brokers
+  broker1:
+    image: confluentinc/cp-kafka:8.1.1
+    depends_on:
+      - controller1
+      - controller2
+      - controller3
+    environment:
+      KAFKA_NODE_ID: 4
+      KAFKA_PROCESS_ROLES: broker
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller1:29093,2@controller2:29094,3@controller3:29095
+      KAFKA_LISTENERS: SASL_PLAINTEXT://:9092,PLAINTEXT_HOST://:39092
+      KAFKA_ADVERTISED_LISTENERS: SASL_PLAINTEXT://broker1:9092,PLAINTEXT_HOST://localhost:39092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: SASL_PLAINTEXT:SASL_PLAINTEXT, CONTROLLER:PLAINTEXT, PLAINTEXT_HOST:SASL_PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: SASL_PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
+      KAFKA_SECURITY_PROTOCOL: SASL_PLAINTEXT
+      KAFKA_SUPER_USERS: User:admin
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+      KAFKA_MIN_INSYNC_REPLICAS: 2
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf"
+    volumes:
+      - ./kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf
+    ports:
+      - 9092:9092
+      - 39092:39092
+    networks:
+      - kafka-net
+
+  broker2:
+    image: confluentinc/cp-kafka:8.1.1
+    depends_on:
+      - controller1
+      - controller2
+      - controller3
+    environment:
+      KAFKA_NODE_ID: 5
+      KAFKA_PROCESS_ROLES: broker
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller1:29093,2@controller2:29094,3@controller3:29095
+      KAFKA_LISTENERS: SASL_PLAINTEXT://:9093, PLAINTEXT_HOST://:39093
+      KAFKA_ADVERTISED_LISTENERS: SASL_PLAINTEXT://broker2:9093, PLAINTEXT_HOST://localhost:39093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: SASL_PLAINTEXT:SASL_PLAINTEXT, CONTROLLER:PLAINTEXT, PLAINTEXT_HOST:SASL_PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: SASL_PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
+      KAFKA_SECURITY_PROTOCOL: SASL_PLAINTEXT
+      KAFKA_SUPER_USERS: User:admin
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+      KAFKA_MIN_INSYNC_REPLICAS: 2
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf"
+    volumes:
+      - ./kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf
+    ports:
+      - 9093:9093
+      - 39093:39093
+    networks:
+      - kafka-net
+
+  broker3:
+    image: confluentinc/cp-kafka:8.1.1
+    depends_on:
+      - controller1
+      - controller2
+      - controller3
+    environment:
+      KAFKA_NODE_ID: 6
+      KAFKA_PROCESS_ROLES: broker
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@controller1:29093,2@controller2:29094,3@controller3:29095
+      KAFKA_LISTENERS: SASL_PLAINTEXT://:9094,PLAINTEXT_HOST://:39094
+      KAFKA_ADVERTISED_LISTENERS: SASL_PLAINTEXT://broker3:9094, PLAINTEXT_HOST://localhost:39094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: SASL_PLAINTEXT:SASL_PLAINTEXT, CONTROLLER:PLAINTEXT, PLAINTEXT_HOST:SASL_PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: SASL_PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_SASL_MECHANISM_INTER_BROKER_PROTOCOL: PLAIN
+      KAFKA_SECURITY_PROTOCOL: SASL_PLAINTEXT
+      KAFKA_SUPER_USERS: User:admin
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+      KAFKA_MIN_INSYNC_REPLICAS: 2
+      KAFKA_OPTS: "-Djava.security.auth.login.config=/etc/kafka/kafka_server_jaas.conf"
+    volumes:
+      - ./kafka_server_jaas.conf:/etc/kafka/kafka_server_jaas.conf
+    ports:
+      - 9094:9094
+      - 39094:39094
+    networks:
+      - kafka-net
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "8084:8080"
+    restart: always
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=kafka-cluster
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=broker1:9092,broker2:9093,broker3:9094
+      - KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL=SASL_PLAINTEXT
+      - KAFKA_CLUSTERS_0_PROPERTIES_SASL_MECHANISM=PLAIN
+      - KAFKA_CLUSTERS_0_PROPERTIES_SASL_JAAS_CONFIG=org.apache.kafka.common.security.plain.PlainLoginModule required username="admin" password="admin-secret";
+    depends_on:
+      - controller1
+      - controller2
+      - controller3
+      - broker1
+      - broker2
+      - broker3
+    networks:
+      - kafka-net
+
+networks:
+  kafka-net:
+    external: true
+
+
+
+

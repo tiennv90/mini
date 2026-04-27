@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mini.order.dto.OrderDetailDTO;
 import com.mini.order.dto.request.CreateOrderRequest;
+import com.mini.order.service.CreateOrderService;
 import com.mini.order.service.OrderService;
 
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
@@ -20,21 +21,17 @@ import shipping.mini.kernal.exception.ResourceStateConflictException;
 public class OrderRestController {
 
 	private final OrderService orderService;
+	private final CreateOrderService createOrderService;
 
-	public OrderRestController(OrderService orderService) {
+	public OrderRestController(OrderService orderService, CreateOrderService createOrderService) {
 		this.orderService = orderService;
+		this.createOrderService = createOrderService;
 	}
 
 	@PostMapping
 	public OrderDetailDTO create(@RequestBody CreateOrderRequest request) throws ResourceStateConflictException {
-		return orderService.createOrder(request);
+		return createOrderService.createOrder(request);
 	}
-
-//	@PostMapping("/{id}/shipment")
-//	public ShipmentDTO createShipment(@PathVariable Long id, @RequestBody CreateShipmentRequest req)
-//			throws EntityNotfoundException, ResourceStateConflictException {
-//		return orderService.createShipment(id, req);
-//	}
 
 	@GetMapping("/{orderId}")
 	@RateLimiter(name = "backendA")

@@ -1,7 +1,9 @@
-spring:
+spring:     
   application:
     name: mini
   datasource:
+    hikari:
+      auto-commit: false   
     url: jdbc:postgresql://localhost:5434/order
     username: admin
     password: admin
@@ -16,6 +18,7 @@ spring:
    init:
     mode: always
   jpa:
+    open-in-view: false
     defer-datasource-initialization: true
     hibernate:
       ddl-auto: create
@@ -23,6 +26,17 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        
+  kafka:
+   bootstrap-servers: "localhost:39092,localhost:39093,localhost:39094"
+   username: admin
+   password: admin-secret
+        
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info
         
 resilience4j:
  ratelimiter:

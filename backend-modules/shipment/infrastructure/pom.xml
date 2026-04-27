@@ -20,5 +20,9 @@
             <artifactId>shipment-application</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>        
     </dependencies>
 </project>

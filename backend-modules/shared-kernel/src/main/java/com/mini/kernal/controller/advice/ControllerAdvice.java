@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import shipping.mini.kernal.dto.ErrorResponseDTO;
@@ -14,7 +15,7 @@ import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 
 @RestControllerAdvice
-public class ControllerAdvice {
+public class ControllerAdvice extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler
 	public ResponseEntity<ErrorResponseDTO> handleEntityNotFound(EntityNotfoundException e) {
