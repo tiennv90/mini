@@ -1,0 +1,14 @@
+package com.mini.order.domain;
+
+public enum ShipmentTrackingStatusDomain {
+    PENDING,
+    PROCESSING,
+    PACKED,
+    SHIPPED,
+    IN_TRANSIT,
+    OUT_FOR_DELIVERY,
+    DELIVERED,
+    FAILED_DELIVERY,
+    RETURNED,
+    CANCELLED
+}
