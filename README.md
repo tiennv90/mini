@@ -50,11 +50,10 @@ http://localhost:8080/swagger-ui/index.html#/
 #### Implement Circuit Breaker in order service
 #### Redesign create order flow: order -> KAFKA -> create shipment
 #### Implemented  monitoring tools
-
+#### Implement flow: Update shipment -> KAFKA -> Update Order Tracking View
 ### Planned
 
 #### Re-design frontend
-#### Implement Event bus to support Microservices and KAFKA
 #### Remove shared modules
 #### KAFKA message handling with queue to process the queue orderly
 #### KAFKA Replay

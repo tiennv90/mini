@@ -1,7 +1,9 @@
 package com.mini.shipment.mapper;
 
 import java.util.List;
+import java.util.UUID;
 
+import com.mini.shipment.command.ShipmentStatusChangeCommand;
 import org.springframework.stereotype.Component;
 
 import com.mini.shipment.command.ShipmentCreatedCommand;
@@ -38,5 +40,14 @@ public class ShipmentDomainMapper {
 		domain.setShipmentStatus(ShipmentStatus.CREATED);
 		domain.setShippedAt(command.shippedAt());
 		return domain;
+	}
+
+	public ShipmentStatusChangeCommand toStatusChangeCommand(ShipmentDomain domain) {
+		return new ShipmentStatusChangeCommand(
+				UUID.randomUUID().toString(),
+				domain.getOrderId(),
+				domain.getId(),
+				domain.getShipmentStatus()
+		);
 	}
 }

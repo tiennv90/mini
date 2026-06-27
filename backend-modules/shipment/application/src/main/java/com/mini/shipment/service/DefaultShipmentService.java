@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.mini.shipment.domain.command.ShipmentCommand;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -31,17 +32,20 @@ public class DefaultShipmentService implements ShipmentService {
 	private final ShipmentSearchQueryService shipmentSearchQueryService;
 	private final Map<ShipmentStatus, ShipmentCommand> commands;
 	private final ShipmentDomainMapper mapper;
+	private final ShipmentNotificationService shipmentNotificationService;
 
 	public DefaultShipmentService(ShipmentDomainRepository shipmentRepository,
 			ParcelDataLoader parcelDataLoader,
 			List<ShipmentCommand> commandList, ShipmentDomainMapper mapper,
-			ShipmentSearchQueryService shipmentSearchQueryService) {
+			ShipmentSearchQueryService shipmentSearchQueryService,
+		  	ShipmentNotificationService shipmentNotificationService) {
 		this.shipmentRepository = shipmentRepository;
 		this.parcelDataLoader = parcelDataLoader;
 		this.commands = commandList.stream()
 				.collect(Collectors.toMap(ShipmentCommand::getTargetStatus, c -> c));
 		this.mapper = mapper;
 		this.shipmentSearchQueryService = shipmentSearchQueryService;
+		this.shipmentNotificationService = shipmentNotificationService;
 	}
 
 	@Override
@@ -66,7 +70,9 @@ public class DefaultShipmentService implements ShipmentService {
 		ShipmentDomain shipment = getShipment(id);
 		ShipmentCommand command = commands.get(req.newShipmentStatus());
 		command.execute(shipment);
-		return mapper.toDTO(shipmentRepository.save(shipment));
+		shipment = shipmentRepository.save(shipment);
+		shipmentNotificationService.sendNotification(mapper.toStatusChangeCommand(shipment));
+		return mapper.toDTO(shipment);
 	}
 
 	private ShipmentDomain getShipment(Long id) throws EntityNotfoundException {
