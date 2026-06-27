@@ -2,6 +2,14 @@ package com.mini.shipment.domain;
 
 public enum ShipmentStatus {
 	CREATED,
+	PENDING,
+	PROCESSING,
 	PACKED,
-	SHIPPED
+	SHIPPED,
+	IN_TRANSIT,
+	OUT_FOR_DELIVERY,
+	DELIVERED,
+	FAILED_DELIVERY,
+	RETURNED,
+	CANCELLED
 }

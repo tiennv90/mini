@@ -1,6 +1,11 @@
-package com.mini.shipment.command;
+package com.mini.order.command;
 
-import com.mini.shipment.domain.ShipmentStatus;
 
-public record ShipmentStatusChangeCommand(String eventId, Long orderId, Long shipmentId, ShipmentStatus shipmentStatus) {
+import com.mini.order.domain.ShipmentTrackingStatusDomain;
+
+public record ShipmentStatusChangeCommand(
+        String eventId,
+        Long orderId,
+        Long shipmentId,
+        ShipmentTrackingStatusDomain shipmentStatus) {
 }

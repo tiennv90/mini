@@ -1,6 +1,10 @@
-package com.mini.shipment.event;
+package com.mini.shipment.command;
 
 import com.mini.shipment.domain.ShipmentStatus;
 
-public record ShipmentStatusChangeEvent(String eventId, Long orderId, Long shipmentId, ShipmentStatus shipmentStatus) {
+public record ShipmentStatusChangeCommand(
+        String eventId,
+        Long orderId,
+        Long shipmentId,
+        ShipmentStatus shipmentStatus) {
 }

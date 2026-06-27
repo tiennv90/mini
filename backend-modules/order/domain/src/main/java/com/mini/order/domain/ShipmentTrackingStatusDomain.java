@@ -1,6 +1,7 @@
 package com.mini.order.domain;
 
 public enum ShipmentTrackingStatusDomain {
+    CREATED,
     PENDING,
     PROCESSING,
     PACKED,

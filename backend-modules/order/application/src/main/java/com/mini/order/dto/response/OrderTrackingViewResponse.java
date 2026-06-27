@@ -1,4 +1,10 @@
 package com.mini.order.dto.response;
 
-public record OrderTrackingVIewResponse() {
+import com.mini.order.domain.OrderStatusDomain;
+
+public record OrderTrackingViewResponse(
+        Long orderId,
+        OrderStatusDomain orderStatus,
+        String eventId
+) {
 }
