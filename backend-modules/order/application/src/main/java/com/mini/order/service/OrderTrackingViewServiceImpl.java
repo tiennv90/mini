@@ -4,6 +4,7 @@ import com.mini.order.dto.response.OrderTrackingViewResponse;
 import com.mini.order.mapper.OrderTrackingViewMapper;
 import com.mini.order.repository.OrderTrackingViewDomainRepository;
 import org.springframework.stereotype.Service;
+import shipping.mini.kernal.exception.EntityNotfoundException;
 
 @Service
 public class OrderTrackingViewServiceImpl implements OrderTrackingViewService {
@@ -18,7 +19,7 @@ public class OrderTrackingViewServiceImpl implements OrderTrackingViewService {
     }
 
     @Override
-    public OrderTrackingViewResponse getOrderTrackingView(Long orderId) {
+    public OrderTrackingViewResponse getOrderTrackingView(Long orderId) throws EntityNotfoundException {
         return orderTrackingViewMapper.toResponse(
                 orderTrackingViewDomainRepository.findOrderWithLatestStatus(orderId));
     }
