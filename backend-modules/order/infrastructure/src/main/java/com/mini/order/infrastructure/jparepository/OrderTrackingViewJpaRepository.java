@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface OrderTrackingViewJpaRepository extends JpaRepository<@NonNull OrderTrackingViewEntity, @NonNull Long> {
 
-    OrderTrackingViewEntity findFirstByOrderIdOrderByUpdatedAtDesc(@NonNull Long orderId);
+    Optional<OrderTrackingViewEntity> findFirstByOrderIdOrderByUpdatedAtDesc(@NonNull Long orderId);
 }
