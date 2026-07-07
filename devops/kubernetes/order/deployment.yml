@@ -16,6 +16,10 @@ spec:
     spec:
       containers:
         - name: order
-          image: order:latest
+          image: order:1.0.3
+          imagePullPolicy: Never
           ports:
-            - containerPort: 80
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: order-config

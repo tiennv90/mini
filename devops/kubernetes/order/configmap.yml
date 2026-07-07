@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: order-config
+data:
+  # property-like keys; each key maps to a simple value
+  DATABASE_URL: jdbc:postgresql://order-postgres:5432/orderdb
+  DATABASE_USER: postgres
+  DATABASE_PASSWORD: postgres
+  KAFKA_SERVER: kafka-0.kafka-headless.default.svc.cluster.local:9092
+  KAFKA_USERNAME: admin
+  KAFKA_PASSWORD: admin-secret

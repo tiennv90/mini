@@ -41,6 +41,10 @@ http://localhost:8080/swagger-ui/index.html#/
 
 `redis-cli -u redis://127.0.0.1:6379`
 
+### Manual docker build commands
+
+`docker build -t order:1.0.1 -f backend-boostrap/order-bootstrap/Dockerfile ./backend-boostrap/order-bootstrap`
+
 ## features
 ### Completed
 #### Implement microservices
