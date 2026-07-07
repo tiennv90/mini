@@ -1,4 +1,4 @@
-FROM openjdk:25-ea-21-jdk-slim AS builder
+FROM eclipse-temurin:25.0.3_9-jdk-alpine AS builder
 
 COPY target/order-bootstrap-1.0.jar /
 

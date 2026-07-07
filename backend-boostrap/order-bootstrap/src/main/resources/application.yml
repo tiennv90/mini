@@ -4,9 +4,13 @@ spring:
   datasource:
     hikari:
       auto-commit: false   
-    url: jdbc:postgresql://localhost:5434/order
-    username: admin
-    password: admin
+#    url: jdbc:postgresql://localhost:5434/order
+#    username: admin
+#    password: admin
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+
     driver-class-name: org.postgresql.Driver
   
   data:
@@ -28,9 +32,12 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         
   kafka:
-   bootstrap-servers: "localhost:39092,localhost:39093,localhost:39094"
-   username: admin
-   password: admin-secret
+#   bootstrap-servers: "localhost:39092,localhost:39093,localhost:39094"
+#   username: admin
+#   password: admin-secret
+   bootstrap-servers: ${KAFKA_SERVER}
+   username: ${KAFKA_USERNAME}
+   password: ${KAFKA_PASSWORD}
         
 management:
   endpoints:

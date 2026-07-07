@@ -30,14 +30,14 @@ spec:
               value: postgres
           volumeMounts:
             - name: postgres-data
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
   volumeClaimTemplates:
     - metadata:
         name: postgres-data
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: my-storage-class
+#        storageClassName: my-storage-class
         resources:
           requests:
-            storage: 10Gi
+            storage: 1Gi
