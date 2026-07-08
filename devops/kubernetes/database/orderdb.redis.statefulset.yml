@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis-statefulset
+spec:
+  serviceName: redis-statefulset
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-statefulset
+  template:
+    metadata:
+      labels:
+        app: redis-statefulset
+    spec:
+      containers:
+        - name: redis
+          image: redis:8.2
+          command: ["redis-server"]
+          args:
+            - --bind
+            - 0.0.0.0
+            - --protected-mode
+            - "no"
+            - --save
+            - "20"
+            - "1"
+            - --loglevel
+            - warning
+          ports:
+            - containerPort: 6379
+              name: client
+            - containerPort: 16379
+              name: gossip
+          volumeMounts:
+            - name: data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 500Mi

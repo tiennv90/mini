@@ -15,8 +15,10 @@ spring:
   
   data:
    redis:
-    host: localhost
-    port: 6379
+#    host: localhost
+#    port: 6379
+    host: ${REDIS_SERVER}
+    port: ${REDIS_PORT}
 
   sql:
    init:

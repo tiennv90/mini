@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: order
-          image: order:1.0.3
+          image: order:1.0.6
           imagePullPolicy: Never
           ports:
             - containerPort: 8080

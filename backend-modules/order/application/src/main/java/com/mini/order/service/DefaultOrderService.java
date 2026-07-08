@@ -54,6 +54,12 @@ public class DefaultOrderService implements OrderService {
 		return orderDomainMapper.mapToOrderDetailDTO(order, itemLines,shipment, parcels);
 	}
 
+	@Override
+	@Cacheable(value = "MINI_ORDER_VIEW", key = "#id", cacheManager = "cacheManager")
+	public OrderDetailDTO getOrderView(Long id) throws EntityNotfoundException {
+		return orderDomainMapper.mapToOrderDTO(orderRepository.findById(id), null);
+	}
+
 	private OrderDomain getOrder(Long id) throws EntityNotfoundException {
 		return orderRepository.findById(id);
 	}

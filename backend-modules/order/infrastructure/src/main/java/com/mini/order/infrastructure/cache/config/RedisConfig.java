@@ -3,6 +3,7 @@ package com.mini.order.infrastructure.cache.config;
 import java.time.Duration;
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
@@ -22,10 +23,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 public class RedisConfig {
 
 	@Bean
-	public RedisConnectionFactory redisConnectionFactory() {
-		LettuceConnectionFactory factory = new LettuceConnectionFactory();
-		factory.afterPropertiesSet();
-		return factory;
+	public RedisConnectionFactory redisConnectionFactory(
+			@Value("${spring.data.redis.host}") String host,
+			@Value("${spring.data.redis.port}") int port) {
+
+		return new LettuceConnectionFactory(host, port);
 	}
 
 	@Bean
