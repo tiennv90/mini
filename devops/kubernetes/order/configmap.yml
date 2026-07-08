@@ -10,3 +10,5 @@ data:
   KAFKA_SERVER: kafka-0.kafka-headless.default.svc.cluster.local:9092
   KAFKA_USERNAME: admin
   KAFKA_PASSWORD: admin-secret
+  REDIS_SERVER: redis-service
+  REDIS_PORT: "6379"
