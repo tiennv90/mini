@@ -16,10 +16,19 @@ spec:
     spec:
       containers:
         - name: order
-          image: order:1.0.6
+          image: order:1.0.17
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: order-config
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 10 #Wait 10 sec after container start then check
+            periodSeconds: 5 #Check every 5 seconds
+            timeoutSeconds: 2 #Wait 2 seconds every check
+            successThreshold: 1 # mark READY after 1 successful attempt
+            failureThreshold: 3 # mark NOT READY after 3 consecutive failures.
