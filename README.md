@@ -43,7 +43,26 @@ http://localhost:8080/swagger-ui/index.html#/
 
 ### Manual docker build commands
 
-`docker build -t order:1.0.1 -f backend-boostrap/order-bootstrap/Dockerfile ./backend-boostrap/order-bootstrap`
+`docker build -t order:1.0.13 -f backend-boostrap/order-bootstrap/Dockerfile .`
+
+## Devops
+
+### Dockerfile with optimization
+- Dockerfile location: backend-boostrap/order-bootstrap/Dockerfile
+- Use alpine image for small compact footprint
+- Caching layers to improve build speed
+- Security improvement with app user instead root user.
+### Kubernetes deployment
+- Order service deployment file location: devops/kubernetes/order/deployment.yml
+- Use deployment object for stateless application
+- Use service object to expose the pod to internal network
+- Use ingress object to expose the pod to public Internet.
+- Pod readiness, pod only accept request if its connections to databases and redis servers can be established.
+
+### Monitoring
+- TBD
+### Terraform
+- TBD
 
 ## features
 ### Completed
