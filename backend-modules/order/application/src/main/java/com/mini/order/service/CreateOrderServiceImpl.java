@@ -2,6 +2,7 @@ package com.mini.order.service;
 
 import java.util.List;
 
+import com.mini.order.exception.OrderStatusConflictException;
 import org.springframework.stereotype.Service;
 
 import com.mini.order.domain.AddressDomain;
@@ -15,7 +16,6 @@ import com.mini.order.mapper.OrderDomainMapper;
 import com.mini.order.publisher.ShipmentEventPublisher;
 import com.mini.order.repository.OrderDomainRepository;
 
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @Service
 public class CreateOrderServiceImpl implements CreateOrderService {
@@ -39,9 +39,9 @@ public class CreateOrderServiceImpl implements CreateOrderService {
 	}
 	
 	@Override
-	public OrderDetailDTO createOrder(CreateOrderRequest request) throws ResourceStateConflictException {
+	public OrderDetailDTO createOrder(CreateOrderRequest request) throws OrderStatusConflictException {
 		if (orderRepository.existsByExternalOrderNumber(request.externalOrderNumber())) {
-			throw new ResourceStateConflictException("Duplicate external order number");
+			throw new OrderStatusConflictException("Duplicate external order number");
 		}
 		AddressDomain address = addressMapper.toDomain(request.address());
 		List<ItemLineDomain> items = request.items().stream().map(itemLineDomainMapper::mapToItemLineDO).toList();

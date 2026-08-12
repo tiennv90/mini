@@ -1,4 +1,4 @@
-package shipping.mini.kernal.dataloader;
+package com.mini.shipment.component;
 
 import java.util.List;
 import java.util.Map;

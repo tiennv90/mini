@@ -15,7 +15,6 @@
 	<packaging>pom</packaging>
 	<description>Shipping Mini API</description>
 	<modules>
-	  <module>backend-modules/shared-kernel</module>
 	  <module>backend-modules/order</module>
 	  <module>backend-modules/shipment</module>
 	  <module>backend-modules/parcel</module>

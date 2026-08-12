@@ -1,5 +1,7 @@
 package com.mini.order.restcontroller;
 
+import com.mini.order.exception.OrderNotFoundException;
+import com.mini.order.exception.OrderStatusConflictException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,8 +15,6 @@ import com.mini.order.service.CreateOrderService;
 import com.mini.order.service.OrderService;
 
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
-import shipping.mini.kernal.exception.EntityNotfoundException;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @RestController
 @RequestMapping("/v1/orders")
@@ -29,13 +29,13 @@ public class OrderRestController {
 	}
 
 	@PostMapping
-	public OrderDetailDTO create(@RequestBody CreateOrderRequest request) throws ResourceStateConflictException {
+	public OrderDetailDTO create(@RequestBody CreateOrderRequest request) throws OrderStatusConflictException {
 		return createOrderService.createOrder(request);
 	}
 
 	@GetMapping("/{orderId}")
 	@RateLimiter(name = "backendA")
-	public OrderDetailDTO getOrderDetails(@PathVariable Long orderId) throws EntityNotfoundException {
+	public OrderDetailDTO getOrderDetails(@PathVariable Long orderId) throws OrderNotFoundException {
 		return orderService.getOrderDetails(orderId);
 	}
 	

@@ -2,12 +2,11 @@ package com.mini.shipment.domain.command;
 
 import java.time.ZonedDateTime;
 
+import com.mini.shipment.domain.exception.ShipmentStatusConflictException;
 import org.springframework.stereotype.Component;
 
 import com.mini.shipment.domain.ShipmentDomain;
 import com.mini.shipment.domain.ShipmentStatus;
-
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @Component
 public class ShipCommand implements ShipmentCommand {
@@ -19,14 +18,14 @@ public class ShipCommand implements ShipmentCommand {
 	}
 	
 	@Override
-	public void execute(ShipmentDomain shipment) throws ResourceStateConflictException {
+	public void execute(ShipmentDomain shipment) throws ShipmentStatusConflictException {
 		
 		if (!shipment.getShipmentStatus().equals(ShipmentStatus.PACKED)) {
-			throw new ResourceStateConflictException("Shipment state is not ready to be shipped");
+			throw new ShipmentStatusConflictException("Shipment state is not ready to be shipped");
 		}
 		boolean allTracked = parcelChecker.allParcelsTracked(shipment);
 		if (!allTracked) {
-			throw new ResourceStateConflictException("All parcels must have tracking code");
+			throw new ShipmentStatusConflictException("All parcels must have tracking code");
 		}
 		shipment.setShipmentStatus(ShipmentStatus.SHIPPED);
 		shipment.setShippedAt(ZonedDateTime.now());

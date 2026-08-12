@@ -10,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Table;
-import shipping.mini.kernal.dto.entity.BaseEntity;
 
 @Entity
 @Table(name = "shipments")

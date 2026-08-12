@@ -5,12 +5,12 @@ import java.util.List;
 import com.mini.parcel.dto.ParcelDTO;
 import com.mini.parcel.dto.request.AssignTrackingRequest;
 
-import shipping.mini.kernal.exception.EntityNotfoundException;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
+import com.mini.parcel.exception.ParcelNotFoundException;
+import com.mini.parcel.exception.ParcelStatusConflictException;
 
 public interface ParcelService {
 
-	public ParcelDTO assignTracking(Long parcelId, AssignTrackingRequest trackingReq) throws EntityNotfoundException, ResourceStateConflictException;
+	public ParcelDTO assignTracking(Long parcelId, AssignTrackingRequest trackingReq) throws ParcelNotFoundException, ParcelStatusConflictException;
 
 	public List<ParcelDTO> getParcelsByShipmentId(Long shipmentId);
 }

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 import com.mini.parcel.domain.ParcelDomain;
 import com.mini.parcel.repository.ParcelDomainRepository;
 
-import shipping.mini.kernal.dataloader.DataLoader;
-
 @Component
 public class ParcelDataLoader implements DataLoader<Long, ParcelDomain>{
 

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 import com.mini.order.dto.ParcelDTO;
 import com.mini.order.gateway.ParcelGateway;
 
-import shipping.mini.kernal.dataloader.DataLoader;
-
 @Component
 public class ParcelDataLoader implements DataLoader<Long, ParcelDTO>{
 

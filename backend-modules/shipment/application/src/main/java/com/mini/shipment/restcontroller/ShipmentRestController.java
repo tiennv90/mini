@@ -1,5 +1,7 @@
 package com.mini.shipment.restcontroller;
 
+import com.mini.shipment.domain.exception.ShipmentNotFoundException;
+import com.mini.shipment.domain.exception.ShipmentStatusConflictException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -17,9 +19,6 @@ import com.mini.shipment.dto.request.ChangeShipmentRequest;
 import com.mini.shipment.dto.request.ShipmentSearchCriteria;
 import com.mini.shipment.service.ShipmentService;
 
-import shipping.mini.kernal.exception.EntityNotfoundException;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
-
 
 @RestController
 @RequestMapping("/v1/shipments")
@@ -32,18 +31,18 @@ public class ShipmentRestController {
 	}
 	
 	@GetMapping("/{id}")
-	public ShipmentDTO getShipmentDetails(@PathVariable Long id) throws EntityNotfoundException {
+	public ShipmentDTO getShipmentDetails(@PathVariable Long id) throws ShipmentNotFoundException {
 		return shipmentService.getShipMenDetails(id);
 	}
 	
 	@GetMapping("/order/{orderId}")
-	public ShipmentDTO getShipmentByOrder(@PathVariable Long orderId) throws EntityNotfoundException {
+	public ShipmentDTO getShipmentByOrder(@PathVariable Long orderId) throws ShipmentNotFoundException {
 		return shipmentService.getShipmentByOrder(orderId);
 	}	
 	
 	@PatchMapping("/{id}")
 	public ShipmentDTO updateStatus(@PathVariable Long id,@RequestBody ChangeShipmentRequest req) 
-			throws EntityNotfoundException, ResourceStateConflictException {
+			throws ShipmentNotFoundException, ShipmentStatusConflictException {
 		return shipmentService.updateStatus(id,req);
 	}
 	

@@ -1,6 +1,6 @@
 package com.mini.parcel.domain;
 
-import shipping.mini.kernal.exception.ResourceStateConflictException;
+import com.mini.parcel.exception.ParcelStatusConflictException;
 
 public class ParcelDomain {
 	
@@ -35,9 +35,9 @@ public class ParcelDomain {
 		this.shipmentId = shipmentId;
 	}
 	
-	public void assignTracking(String trackingCode) throws ResourceStateConflictException {
+	public void assignTracking(String trackingCode) throws ParcelStatusConflictException {
 		if (this.trackingCode != null) {
-			throw new ResourceStateConflictException("Tracking code already assigned");
+			throw new ParcelStatusConflictException("Tracking code already assigned");
 		}
 		this.trackingCode = trackingCode;
 	}

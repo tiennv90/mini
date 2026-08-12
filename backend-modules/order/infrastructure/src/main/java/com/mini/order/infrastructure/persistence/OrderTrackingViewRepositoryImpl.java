@@ -1,13 +1,12 @@
 package com.mini.order.infrastructure.persistence;
 
 import com.mini.order.domain.OrderTrackingViewDomain;
+import com.mini.order.exception.OrderNotFoundException;
 import com.mini.order.infrastructure.entity.OrderTrackingViewEntity;
 import com.mini.order.infrastructure.jparepository.OrderTrackingViewJpaRepository;
 import com.mini.order.infrastructure.mapper.OrderTrackingViewEntityMapper;
 import com.mini.order.repository.OrderTrackingViewDomainRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Repository;
-import shipping.mini.kernal.exception.EntityNotfoundException;
 
 import java.util.Optional;
 
@@ -24,10 +23,10 @@ public class OrderTrackingViewRepositoryImpl implements OrderTrackingViewDomainR
     }
 
     @Override
-    public OrderTrackingViewDomain findOrderWithLatestStatus(Long orderId) throws EntityNotfoundException {
+    public OrderTrackingViewDomain findOrderWithLatestStatus(Long orderId) throws OrderNotFoundException {
         Optional<OrderTrackingViewEntity> optional = orderTrackingViewJpaRepository.findFirstByOrderIdOrderByUpdatedAtDesc(orderId);
         if (optional.isEmpty()) {
-            throw new EntityNotfoundException("Order Tracking View not found");
+            throw new OrderNotFoundException("Order Tracking View not found");
         }
         return mapper.toDomain(optional.get()) ;
     }
