@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 import com.mini.order.domain.ItemLineDomain;
 import com.mini.order.repository.ItemLineDomainRepository;
 
-import shipping.mini.kernal.dataloader.DataLoader;
-
 @Component
 public class ItemLineDataLoader implements DataLoader<Long, ItemLineDomain>{
 

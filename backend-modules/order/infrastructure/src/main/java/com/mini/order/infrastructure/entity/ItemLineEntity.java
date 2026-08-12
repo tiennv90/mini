@@ -7,7 +7,6 @@ import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import shipping.mini.kernal.dto.entity.BaseEntity;
 
 @Entity
 @Table(name = "item_line")

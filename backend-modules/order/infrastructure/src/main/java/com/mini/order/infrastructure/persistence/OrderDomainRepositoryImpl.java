@@ -1,5 +1,6 @@
 package com.mini.order.infrastructure.persistence;
 
+import com.mini.order.exception.OrderNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import com.mini.order.domain.OrderDomain;
@@ -9,8 +10,6 @@ import com.mini.order.infrastructure.jparepository.OrderJpaRepository;
 import com.mini.order.infrastructure.mapper.AddressEntityMapper;
 import com.mini.order.infrastructure.mapper.OrderEntityMapper;
 import com.mini.order.repository.OrderDomainRepository;
-
-import shipping.mini.kernal.exception.EntityNotfoundException;
 
 @Repository
 public class OrderDomainRepositoryImpl implements OrderDomainRepository {
@@ -26,9 +25,9 @@ public class OrderDomainRepositoryImpl implements OrderDomainRepository {
 	}
 	
 	@Override
-	public OrderDomain findById(Long id) throws EntityNotfoundException{
+	public OrderDomain findById(Long id) throws OrderNotFoundException {
 		OrderEntity orderEntity = repository.findById(id)
-				.orElseThrow(() -> new EntityNotfoundException("Order not found with id: " + id));
+				.orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + id));
 		return mapper.toDomain(orderEntity);
 	}
 

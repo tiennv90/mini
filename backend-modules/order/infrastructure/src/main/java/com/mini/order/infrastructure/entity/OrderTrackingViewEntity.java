@@ -3,7 +3,6 @@ package com.mini.order.infrastructure.entity;
 import com.mini.order.domain.OrderStatusDomain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import shipping.mini.kernal.dto.entity.BaseEntity;
 
 @Entity
 @Table(name = "order_tracking_view")

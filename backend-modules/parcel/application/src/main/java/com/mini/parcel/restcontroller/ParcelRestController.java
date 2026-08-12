@@ -2,6 +2,8 @@ package com.mini.parcel.restcontroller;
 
 import java.util.List;
 
+import com.mini.parcel.exception.ParcelNotFoundException;
+import com.mini.parcel.exception.ParcelStatusConflictException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +15,6 @@ import com.mini.parcel.dto.ParcelDTO;
 import com.mini.parcel.dto.request.AssignTrackingRequest;
 import com.mini.parcel.service.ParcelService;
 
-import shipping.mini.kernal.exception.EntityNotfoundException;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @RestController
 @RequestMapping("/v1/parcels")
@@ -32,7 +32,7 @@ public class ParcelRestController {
 	}
 	
 	@PatchMapping("/{id}/tracking")
-	public ParcelDTO parcelassignTracking(@PathVariable Long id, @RequestBody AssignTrackingRequest req) throws EntityNotfoundException, ResourceStateConflictException {
+	public ParcelDTO parcelAssignTracking(@PathVariable Long id, @RequestBody AssignTrackingRequest req) throws ParcelNotFoundException, ParcelStatusConflictException {
 		return parcelService.assignTracking(id, req);
 	}
 }

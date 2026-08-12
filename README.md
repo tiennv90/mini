@@ -1,7 +1,7 @@
 ## Tech stack
 ⚛️ ![React](https://img.shields.io/badge/React-JS-61DAFB?logo=react&logoColor=white) React JS |
 ⚡ ![Next.js](https://img.shields.io/badge/Next-JS-black?logo=next.js) Next JS |
-☕ ![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=java&logoColor=white) Java 21 |
+☕ ![Java](https://img.shields.io/badge/Java-25-ED8B00?logo=java&logoColor=white) Java 25 |
 🗄 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white) PostgreSQL |
 🚀 ![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white) Redis |
 📡 ![Kafka](https://img.shields.io/badge/Kafka-000000?logo=apachekafka&logoColor=white) Kafka
@@ -45,6 +45,12 @@ http://localhost:8080/swagger-ui/index.html#/
 
 `docker build -t order:1.0.13 -f backend-boostrap/order-bootstrap/Dockerfile .`
 
+### Test SonarQube server
+
+```
+mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.token=<token> -Dsonar.host.url=http://localhost:9000
+```
+
 ## Devops
 
 ### Dockerfile with optimization
@@ -74,10 +80,11 @@ http://localhost:8080/swagger-ui/index.html#/
 #### Redesign create order flow: order -> KAFKA -> create shipment
 #### Implemented  monitoring tools
 #### Implement flow: Update shipment -> KAFKA -> Update Order Tracking View
+#### Remove shared modules
+
 ### Planned
 
 #### Re-design frontend
-#### Remove shared modules
 #### KAFKA message handling with queue to process the queue orderly
 #### KAFKA Replay
 #### Implement placeholder objects to support no return data/error from external service call.

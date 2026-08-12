@@ -2,6 +2,7 @@ package com.mini.order.service;
 
 import java.util.List;
 
+import com.mini.order.exception.OrderNotFoundException;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,6 @@ import com.mini.order.gateway.ShipmentGateway;
 import com.mini.order.mapper.OrderDomainMapper;
 import com.mini.order.repository.OrderDomainRepository;
 
-import shipping.mini.kernal.exception.EntityNotfoundException;
 
 @Service
 public class DefaultOrderService implements OrderService {
@@ -41,7 +41,7 @@ public class DefaultOrderService implements OrderService {
 
 	@Override
 	@Cacheable(value = "MINI_ORDER", key = "#id", cacheManager = "cacheManager")
-	public OrderDetailDTO getOrderDetails(Long id) throws EntityNotfoundException {
+	public OrderDetailDTO getOrderDetails(Long id) throws OrderNotFoundException {
 		OrderDomain order = getOrder(id);
 		List<ItemLineDomain> itemLines = itemLineLoader.loadAsList(List.of(id));
 
@@ -56,11 +56,11 @@ public class DefaultOrderService implements OrderService {
 
 	@Override
 	@Cacheable(value = "MINI_ORDER_VIEW", key = "#id", cacheManager = "cacheManager")
-	public OrderDetailDTO getOrderView(Long id) throws EntityNotfoundException {
+	public OrderDetailDTO getOrderView(Long id) throws OrderNotFoundException {
 		return orderDomainMapper.mapToOrderDTO(orderRepository.findById(id), null);
 	}
 
-	private OrderDomain getOrder(Long id) throws EntityNotfoundException {
+	private OrderDomain getOrder(Long id) throws OrderNotFoundException {
 		return orderRepository.findById(id);
 	}
 }

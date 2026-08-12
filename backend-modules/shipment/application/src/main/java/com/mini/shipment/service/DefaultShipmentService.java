@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.mini.shipment.domain.command.ShipmentCommand;
+import com.mini.shipment.domain.exception.ShipmentNotFoundException;
+import com.mini.shipment.domain.exception.ShipmentStatusConflictException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +22,6 @@ import com.mini.shipment.dto.request.ChangeShipmentRequest;
 import com.mini.shipment.dto.request.ShipmentSearchCriteria;
 import com.mini.shipment.mapper.ShipmentDomainMapper;
 import com.mini.shipment.searchquery.ShipmentSearchQueryService;
-
-import shipping.mini.kernal.exception.EntityNotfoundException;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @Service
 public class DefaultShipmentService implements ShipmentService {
@@ -49,9 +48,9 @@ public class DefaultShipmentService implements ShipmentService {
 	}
 
 	@Override
-	public ShipmentDTO getShipMenDetails(Long id) throws EntityNotfoundException {
+	public ShipmentDTO getShipMenDetails(Long id) throws ShipmentNotFoundException {
 		ShipmentDomain shipment = shipmentRepository.findShipmentDetailsById(id)
-				.orElseThrow(() -> new EntityNotfoundException("Shipment not found for id " + id));
+				.orElseThrow(() -> new ShipmentNotFoundException("Shipment not found for id " + id));
 		return mapper.toDTO(shipment);
 	}
 
@@ -66,7 +65,8 @@ public class DefaultShipmentService implements ShipmentService {
 	}
 	
 	@Override
-	public ShipmentDTO updateStatus(Long id, ChangeShipmentRequest req) throws EntityNotfoundException, ResourceStateConflictException {
+	public ShipmentDTO updateStatus(Long id, ChangeShipmentRequest req) throws ShipmentNotFoundException,
+			ShipmentStatusConflictException {
 		ShipmentDomain shipment = getShipment(id);
 		ShipmentCommand command = commands.get(req.newShipmentStatus());
 		command.execute(shipment);
@@ -75,15 +75,15 @@ public class DefaultShipmentService implements ShipmentService {
 		return mapper.toDTO(shipment);
 	}
 
-	private ShipmentDomain getShipment(Long id) throws EntityNotfoundException {
+	private ShipmentDomain getShipment(Long id) throws ShipmentNotFoundException {
 		return shipmentRepository.findById(id)
-				.orElseThrow(() -> new EntityNotfoundException("Shipment not found for Id: " + id));
+				.orElseThrow(() -> new ShipmentNotFoundException("Shipment not found for Id: " + id));
 	}
 
 	@Override
-	public ShipmentDTO getShipmentByOrder(Long orderId) throws EntityNotfoundException {
+	public ShipmentDTO getShipmentByOrder(Long orderId) throws ShipmentNotFoundException {
 		ShipmentDomain shipment = shipmentRepository.findByOrderId(orderId)
-				.orElseThrow(() -> new EntityNotfoundException("No Shipment not found for Order id " + orderId));
+				.orElseThrow(() -> new ShipmentNotFoundException("No Shipment not found for Order id " + orderId));
 		return mapper.toDTO(shipment);
 	}
 

@@ -3,6 +3,8 @@ package com.mini.parcel.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.mini.parcel.exception.ParcelNotFoundException;
+import com.mini.parcel.exception.ParcelStatusConflictException;
 import org.springframework.stereotype.Service;
 
 import com.mini.parcel.domain.ParcelDomain;
@@ -10,9 +12,6 @@ import com.mini.parcel.dto.ParcelDTO;
 import com.mini.parcel.dto.request.AssignTrackingRequest;
 import com.mini.parcel.mapper.ParcelDomainMapper;
 import com.mini.parcel.repository.ParcelDomainRepository;
-
-import shipping.mini.kernal.exception.EntityNotfoundException;
-import shipping.mini.kernal.exception.ResourceStateConflictException;
 
 @Service
 public class DefaultParcelService implements ParcelService {
@@ -26,15 +25,15 @@ public class DefaultParcelService implements ParcelService {
 	}
 
 	@Override
-	public ParcelDTO assignTracking(Long parcelId, AssignTrackingRequest req) throws EntityNotfoundException, ResourceStateConflictException {
+	public ParcelDTO assignTracking(Long parcelId, AssignTrackingRequest req) throws ParcelNotFoundException, ParcelStatusConflictException {
 		ParcelDomain parcel = getParcel(parcelId);
 		parcel.assignTracking(req.trackingCode());
 		return mapper.toDTo(parcelDomainRepository.save(parcel));
 	}
 
-	private ParcelDomain getParcel(Long parcelId) throws EntityNotfoundException {
+	private ParcelDomain getParcel(Long parcelId) throws ParcelNotFoundException {
 		return parcelDomainRepository.findById(parcelId)
-				.orElseThrow(() -> new EntityNotfoundException("Parcel not found for Id: " + parcelId));
+				.orElseThrow(() -> new ParcelNotFoundException("Parcel not found for Id: " + parcelId));
 	}
 
 	@Override

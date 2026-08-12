@@ -11,11 +11,6 @@
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
-            <groupId>shipping</groupId>
-            <artifactId>shared-kernal</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>parcel</groupId>
             <artifactId>parcel-application</artifactId>
             <version>1.0</version>

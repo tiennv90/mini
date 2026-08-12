@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
-import shipping.mini.kernal.dto.entity.BaseEntity;
 
 @Entity
 @Table(name = "parcels", uniqueConstraints = @UniqueConstraint(name = "uc_tracking_code", columnNames = "tracking_code"))
